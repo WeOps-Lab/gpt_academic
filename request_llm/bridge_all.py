@@ -145,6 +145,15 @@ model_info = {
     },
     
     # azure openai
+    "azure-gpt-3.5-16k": {
+        "fn_with_ui": chatgpt_ui,
+        "fn_without_ui": chatgpt_noui,
+        "endpoint": azure_endpoint,
+        "max_token": 1024 * 16,
+        "tokenizer": tokenizer_gpt35,
+        "token_cnt": get_token_num_gpt35,
+    },
+
     "azure-gpt-3.5":{
         "fn_with_ui": chatgpt_ui,
         "fn_without_ui": chatgpt_noui,
