@@ -7,6 +7,29 @@ from toolbox import clear_line_break
 
 def get_core_functions():
     return {
+        "Python开发工程师":{
+            "Prefix":'''
+我希望你扮演Python开发工程师，你对开源技术，第三方库，以及前沿技术非常熟练，我要求你具备以下的特点：
+
+1. 对代码的整洁度有非常高的要求
+2. 对方案的准确性有非常高的要求，不会提供摸棱两可的、未经过验证的、或者你不确定的方案
+3. 你精通开源领域的各种工具库，当有更适合的技术或者方案的时候，你可以不按照我的要求进行代码的编写，优先使用你最推荐的方法
+4. 所编写的内容必须是生产可用的
+5. 一步一步的思考问题
+6. 像一个科学家一样严谨的回答我的问题
+7. 遇到你无法确定的问题，请回复：我不知道
+
+接下来我会给你具体的任务，明白请回复：收到            
+''',
+            # 后缀，会被加在你的输入之后。例如，配合前缀可以把你的输入内容用引号圈起来
+            "Suffix": r"",
+            # 按钮颜色 (默认 secondary)
+            "Color": r"secondary",
+            # 按钮是否可见 (默认 True，即可见)
+            "Visible": True,
+            # 是否在触发时清除历史 (默认 False，即不处理之前的对话历史)
+            "AutoClearHistory": False
+        },
         "英语学术润色": {
             # 前缀，会被加在你的输入之前。例如，用来描述你的要求，例如翻译、解释代码、润色等等
             "Prefix":   r"Below is a paragraph from an academic paper. Polish the writing to meet the academic style, " +
@@ -18,7 +41,7 @@ def get_core_functions():
             # 按钮颜色 (默认 secondary)
             "Color":    r"secondary",
             # 按钮是否可见 (默认 True，即可见)
-            "Visible": True,
+            "Visible": False,
             # 是否在触发时清除历史 (默认 False，即不处理之前的对话历史)
             "AutoClearHistory": False
         },
@@ -26,6 +49,7 @@ def get_core_functions():
             "Prefix":   r"作为一名中文学术论文写作改进助理，你的任务是改进所提供文本的拼写、语法、清晰、简洁和整体可读性，" +
                         r"同时分解长句，减少重复，并提供改进建议。请只提供文本的更正版本，避免包括解释。请编辑以下文本" + "\n\n",
             "Suffix":   r"",
+            "Visible": False,
         },
         "查找语法错误": {
             "Prefix":   r"Help me ensure that the grammar and the spelling is correct. "
@@ -44,11 +68,13 @@ def get_core_functions():
                         r"You need to report all grammar and spelling mistakes as the example before."
                         + "\n\n",
             "Suffix":   r"",
+            "Visible": False,
             "PreProcess": clear_line_break,    # 预处理：清除换行符
         },
         "中译英": {
             "Prefix":   r"Please translate following sentence to English:" + "\n\n",
             "Suffix":   r"",
+            "Visible": False,
         },
         "学术中英互译": {
             "Prefix":   r"I want you to act as a scientific English-Chinese translator, " +
@@ -60,6 +86,7 @@ def get_core_functions():
                         r"and experience about effective writing techniques to reply. " +
                         r"I'll give you my paragraphs as follows, tell me what language it is written in, and then translate:" + "\n\n",
             "Suffix": "",
+            "Visible": False,
             "Color": "secondary",
         },
         "英译中": {

@@ -1,3 +1,4 @@
+from crazy_functions.WeOps告警源辅助编写 import WeOps告警源辅助编写
 from toolbox import HotReload  # HotReload 的意思是热更新，修改函数插件后，不需要重启程序，代码直接生效
 
 
@@ -36,18 +37,30 @@ def get_crazy_functions():
     from crazy_functions.批量Markdown翻译 import Markdown中译英
     from crazy_functions.虚空终端 import 虚空终端
 
-
     function_plugins = {
+        "理解PDF文档内容": {
+            "Group": "学术",
+            "Color": "stop",
+            "AsButton": True,  # 加入下拉菜单中
+            "Info": "理解PDF文档的内容并进行回答 | 输入参数为路径",
+            "Function": HotReload(理解PDF文档内容标准文件输入)
+        },
+        "WeOps告警源插件编写": {
+            "Group": "编程",
+            "Color": "stop",
+            "AsButton": True,  # 加入下拉菜单中
+            "Function": HotReload(WeOps告警源辅助编写)
+        },
         "虚空终端": {
             "Group": "对话|编程|学术|智能体",
             "Color": "stop",
-            "AsButton": True,
+            "AsButton": False,
             "Function": HotReload(虚空终端)
         },
         "解析整个Python项目": {
             "Group": "编程",
             "Color": "stop",
-            "AsButton": True,
+            "AsButton": False,
             "Info": "解析一个Python项目的所有源文件(.py) | 输入参数为路径",
             "Function": HotReload(解析一个Python项目)
         },
@@ -74,7 +87,7 @@ def get_crazy_functions():
         "批量总结Word文档": {
             "Group": "学术",
             "Color": "stop",
-            "AsButton": True,
+            "AsButton": False,
             "Info": "批量总结word文档 | 输入参数为路径",
             "Function": HotReload(总结word文档)
         },
@@ -160,7 +173,7 @@ def get_crazy_functions():
         "翻译README或MD": {
             "Group": "编程",
             "Color": "stop",
-            "AsButton": True,
+            "AsButton": False,
             "Info": "将Markdown翻译为中文 | 输入参数为路径或URL",
             "Function": HotReload(Markdown英译中)
         },
@@ -180,7 +193,7 @@ def get_crazy_functions():
         },
         "保存当前的对话": {
             "Group": "对话",
-            "AsButton": True,
+            "AsButton": False,
             "Info": "保存当前的对话 | 不需要输入参数",
             "Function": HotReload(对话历史存档)
         },
@@ -192,21 +205,21 @@ def get_crazy_functions():
         },
         "历史上的今天": {
             "Group": "对话",
-            "AsButton": True,
+            "AsButton": False,
             "Info": "查看历史上的今天事件 (这是一个面向开发者的插件Demo) | 不需要输入参数",
             "Function": HotReload(高阶功能模板函数)
         },
         "精准翻译PDF论文": {
             "Group": "学术",
             "Color": "stop",
-            "AsButton": True,  
+            "AsButton": False,
             "Info": "精准翻译PDF论文为中文 | 输入参数为路径",
             "Function": HotReload(批量翻译PDF文档)
         },
         "询问多个GPT模型": {
             "Group": "对话",
             "Color": "stop",
-            "AsButton": True,
+            "AsButton": False,
             "Function": HotReload(同时问询)
         },
         "批量总结PDF文档": {
@@ -223,13 +236,7 @@ def get_crazy_functions():
             "Info": "使用谷歌学术检索助手搜索指定URL的结果 | 输入参数为谷歌学术搜索页的URL",
             "Function": HotReload(谷歌检索小助手)
         },
-        "理解PDF文档内容 （模仿ChatPDF）": {
-            "Group": "学术",
-            "Color": "stop",
-            "AsButton": False,  # 加入下拉菜单中
-            "Info": "理解PDF文档的内容并进行回答 | 输入参数为路径",
-            "Function": HotReload(理解PDF文档内容标准文件输入)
-        },
+
         "英文Latex项目全文润色（输入路径或上传压缩包）": {
             "Group": "学术",
             "Color": "stop",
@@ -269,7 +276,7 @@ def get_crazy_functions():
         #     "Info": "对Latex项目全文进行英译中处理 | 输入参数为路径或上传压缩包",
         #     "Function": HotReload(Latex英译中)
         # },
-        
+
         "批量Markdown中译英（输入路径或上传压缩包）": {
             "Group": "编程",
             "Color": "stop",
@@ -326,7 +333,8 @@ def get_crazy_functions():
                 "Color": "stop",
                 "AsButton": False,
                 "AdvancedArgs": True,  # 调用时，唤起高级参数输入区（默认False）
-                "ArgsReminder": "输入时用逗号隔开, *代表通配符, 加了^代表不匹配; 不输入代表全部匹配。例如: \"*.c, ^*.cpp, config.toml, ^*.toml\"",  # 高级参数输入区的显示提示
+                "ArgsReminder": "输入时用逗号隔开, *代表通配符, 加了^代表不匹配; 不输入代表全部匹配。例如: \"*.c, ^*.cpp, config.toml, ^*.toml\"",
+                # 高级参数输入区的显示提示
                 "Function": HotReload(解析任意code项目)
             },
         })
@@ -341,7 +349,8 @@ def get_crazy_functions():
                 "Color": "stop",
                 "AsButton": False,
                 "AdvancedArgs": True,  # 调用时，唤起高级参数输入区（默认False）
-                "ArgsReminder": "支持任意数量的llm接口，用&符号分隔。例如chatglm&gpt-3.5-turbo&api2d-gpt-4",  # 高级参数输入区的显示提示
+                "ArgsReminder": "支持任意数量的llm接口，用&符号分隔。例如chatglm&gpt-3.5-turbo&api2d-gpt-4",
+                # 高级参数输入区的显示提示
                 "Function": HotReload(同时问询_指定模型)
             },
         })
@@ -539,7 +548,6 @@ def get_crazy_functions():
     except:
         print('Load function plugin failed')
 
-
     # try:
     #     from crazy_functions.chatglm微调工具 import 微调数据集生成
     #     function_plugins.update({
@@ -553,8 +561,6 @@ def get_crazy_functions():
     #     })
     # except:
     #     print('Load function plugin failed')
-
-
 
     """
     设置默认值:
