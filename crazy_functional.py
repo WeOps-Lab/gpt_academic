@@ -307,7 +307,7 @@ def get_crazy_functions():
             "连接网络回答问题（输入问题后点击该插件，需要访问谷歌）": {
                 "Group": "对话",
                 "Color": "stop",
-                "AsButton": False,  # 加入下拉菜单中
+                "AsButton": True,  # 加入下拉菜单中
                 # "Info": "连接网络回答问题（需要访问谷歌）| 输入参数是一个问题",
                 "Function": HotReload(连接网络回答问题)
             }
