@@ -308,8 +308,10 @@ def get_crazy_functions():
                 "Group": "对话",
                 "Color": "stop",
                 "AsButton": True,  # 加入下拉菜单中
-                # "Info": "连接网络回答问题（需要访问谷歌）| 输入参数是一个问题",
-                "Function": HotReload(连接网络回答问题)
+                "Info": "连接网络回答问题（需要访问谷歌）| 输入参数是一个问题",
+                "Function": HotReload(连接网络回答问题),
+                "AdvancedArgs": True,
+                "ArgsReminder": ''
             }
         })
         from crazy_functions.联网的ChatGPT_bing版 import 连接bing搜索回答问题
