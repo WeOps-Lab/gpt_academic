@@ -78,7 +78,7 @@ def 连接网络回答问题(txt, llm_kwargs, plugin_kwargs, chatbot, history, s
     from toolbox import get_conf
     proxies, = get_conf('proxies')
     more_req = plugin_kwargs.get("advanced_arg", "")
-    if more_req == '':
+    if more_req != '':
         urls = google(txt, proxies)
     else:
         urls = google(more_req, proxies)
