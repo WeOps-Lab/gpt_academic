@@ -207,6 +207,16 @@ def WeOps告警源辅助编写(txt, llm_kwargs, plugin_kwargs, chatbot, history,
 
     # 搜索需要处理的文件清单
     file_manifest = [f for f in glob.glob(f'{project_folder}/**/*.pdf', recursive=True)]
+
+    # 找到文件，则读取内容，打印到控制台
+    if len(file_manifest) > 0:
+        file_name = file_manifest[0]
+        file_content, page_one = read_and_clean_pdf_text(file_name)
+        file_content = file_content.encode('utf-8', 'ignore').decode()  # avoid reading non-utf8 chars
+        print(file_content)
+        chatbot.append([f"读取到的PDF文件内容：", file_content[:500] + "......"])
+        yield from update_ui(chatbot=chatbot, history=history)  # 刷新界面
+
     # 如果没找到任何文件
     if len(file_manifest) == 0:
         report_execption(chatbot, history,
