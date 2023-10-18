@@ -79,9 +79,9 @@ def 连接网络回答问题(txt, llm_kwargs, plugin_kwargs, chatbot, history, s
     proxies, = get_conf('proxies')
     more_req = plugin_kwargs.get("advanced_arg", "")
     if more_req != '':
-        urls = google(txt, proxies)
-    else:
         urls = google(more_req, proxies)
+    else:
+        urls = google(txt, proxies)
     history = []
     if len(urls) == 0:
         chatbot.append((f"结论：{txt}",
