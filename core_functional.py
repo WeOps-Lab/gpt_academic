@@ -52,6 +52,53 @@ def get_core_functions():
             # 是否在触发时清除历史 (默认 False，即不处理之前的对话历史)
             "AutoClearHistory": False
         },
+        "数据库Schema转表格": {
+            "Prefix": '''
+## ChatGPT3.5 16K Prompt
+
+**任务：** 为从Nativecat导出的模式生成一个Markdown表格。
+
+**模式：**
+
+> **Table: account_user_property**
+
+DROP TABLE IF EXISTS `account_user_property`;
+CREATE TABLE `account_user_property` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `key` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `value` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `account_user_property_user_id_key_652c804e_uniq`(`user_id`, `key`) USING BTREE,
+  CONSTRAINT `account_user_property_user_id_f10c8a01_fk_account_user_id` FOREIGN KEY (`user_id`) REFERENCES `account_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+**指示：**
+1. 解析模式并提取表和字段信息。
+2. 为模式中的每个表生成一个Markdown表格，使用表名作为表格标题。
+3. 在表格中包括以下列：`列名`、`类型`、`可为空`、`默认值`和`描述`。
+4. 如果表或字段缺少描述，请根据表名或字段名生成描述。
+
+**示例表： account_user_property**
+
+> **Table: account_user_property**
+
+| 列名    | 类型           | 可为空 | 默认值   | 描述                   |
+|-------|----------------|--------|---------|-----------------------|
+| id    | int(11)        | 否     |         | 表中每条记录的唯一标识符。   |
+| key   | varchar(64)    | 否     |         | 与属性相关的键。           |
+| value | longtext       | 否     |         | 属性的值。                |
+| user_id | int(11)      | 否     |         | 关联属性的用户ID。         |           
+    ''',
+            # 后缀，会被加在你的输入之后。例如，配合前缀可以把你的输入内容用引号圈起来
+            "Suffix": r"",
+            # 按钮颜色 (默认 secondary)
+            "Color": r"secondary",
+            # 按钮是否可见 (默认 True，即可见)
+            "Visible": True,
+            # 是否在触发时清除历史 (默认 False，即不处理之前的对话历史)
+            "AutoClearHistory": False
+        },
         "英语学术润色": {
             # 前缀，会被加在你的输入之前。例如，用来描述你的要求，例如翻译、解释代码、润色等等
             "Prefix":   r"Below is a paragraph from an academic paper. Polish the writing to meet the academic style, " +
