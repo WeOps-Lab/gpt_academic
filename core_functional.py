@@ -211,6 +211,8 @@ If you identify that the problem is composed in a non-English language, kindly u
 
 ## Confirm
 If you understand and agree with the above instructions, describe your understanding step by step, then I will provide a problem for you to analyze.
+
+接下来让我们用中文开始交流 
 """,
             "Suffix": r"",
             "Color": r"secondary",
